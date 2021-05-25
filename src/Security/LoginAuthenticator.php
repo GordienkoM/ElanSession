@@ -95,7 +95,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
             return new RedirectResponse($targetPath);
         }
         //c'est la route de redirection après connexion
-        return new RedirectResponse($this->urlGenerator->generate('accueil'));
+        return new RedirectResponse($this->urlGenerator->generate('connextion'));
        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
