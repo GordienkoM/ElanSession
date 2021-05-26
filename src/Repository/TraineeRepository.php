@@ -47,4 +47,11 @@ class TraineeRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function countTrainees(){
+        return $this->createQueryBuilder('t')
+            ->select('count(t.id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

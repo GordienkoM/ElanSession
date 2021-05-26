@@ -47,4 +47,11 @@ class LocationRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function countLocations(){
+        return $this->createQueryBuilder('l')
+            ->select('count(l.id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

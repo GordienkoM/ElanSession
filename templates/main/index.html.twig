@@ -5,6 +5,12 @@
 {% block body %}
 
 
-<h1> {{ text }}! </h1>
+<h1> Nombre de sessions : {{ nbsessions }} </h1>
+<h1> Nombre de stagiaires : {{ nbtrainees }} </h1>
+
+{% for session in sessions %}
+    <p>{{ session.title }}</p>
+    <p>Nb de stagiaires : {{ session.trainees|length }}</p>
+{% endfor %}
 
 {% endblock %}
