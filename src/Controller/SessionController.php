@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Training;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,26 +11,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SessionController extends AbstractController
 {
     /**
-     * @Route("/trainings", name="trainings")
+     * @Route("/sessions", name="sessions")
      */
     public function index(): Response
     {
-        $trainings = $this->getDoctrine()
-            ->getRepository(Training::class)
+        $sessions = $this->getDoctrine()
+            ->getRepository(Session::class)
             ->findBy([], ["title" => "DESC"]);
         return $this->render('session/index.html.twig', [
-            'trainings' => $trainings,
+            'sessions' => $sessions,
         ]);
     }
 
 
     /**
-     * @Route("/showTraining/{id?}", name="show_training")
+     * @Route("/showSession/{id?}", name="show_session")
      */
-    public function showTraining(Training $training = null): Response
+    public function showSession(Session $session = null): Response
     {
-        return $this->render('forum/trainingAndPosts.html.twig', [
-            'training' => $training,
+        return $this->render('session/showSession.html.twig', [
+            'session' => $session,
         ]);
     }
 }

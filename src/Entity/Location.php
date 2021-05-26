@@ -39,7 +39,7 @@ class Location
      */
     private $sessions;
 
-    public function  __toString()
+    public function __toString()
     {
         return $this->adress." ".$this->postalCode." ".$this->city;
     }
@@ -102,7 +102,7 @@ class Location
     {
         if (!$this->sessions->contains($session)) {
             $this->sessions[] = $session;
-            $session->addLocation($this);
+            $session->setLocation($this);
         }
 
         return $this;
@@ -111,9 +111,13 @@ class Location
     public function removeSession(Session $session): self
     {
         if ($this->sessions->removeElement($session)) {
-            $session->removeLocation($this);
+            // set the owning side to null (unless already changed)
+            if ($session->getLocation() === $this) {
+                $session->setLocation(null);
+            }
         }
 
         return $this;
     }
+
 }
