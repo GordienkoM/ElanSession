@@ -63,6 +63,11 @@ class Trainee
      * @ORM\ManyToMany(targetEntity=Session::class, mappedBy="trainees")
      */
     private $sessions;
+    
+    public function getFullAdress()
+    {
+        return $this->adress." ".$this->postalCode." ".$this->city;
+    }
 
     public function __construct()
     {

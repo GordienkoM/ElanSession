@@ -39,6 +39,11 @@ class Location
      */
     private $sessions;
 
+    public function  __toString()
+    {
+        return $this->adress." ".$this->postalCode." ".$this->city;
+    }
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();

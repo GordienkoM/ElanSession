@@ -56,6 +56,11 @@ class Session
      */
     private $training;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
     public function __construct()
     {
         $this->trainees = new ArrayCollection();
@@ -114,6 +119,12 @@ class Session
         return $this;
     }
 
+    //on verifie si la Session a commencé
+    public function hasBegun()
+    {
+        return $this->startDate < new \DateTime();
+    }
+
     /**
      * @return Collection|Trainee[]
      */
@@ -161,6 +172,18 @@ class Session
     public function setTraining(?Training $training): self
     {
         $this->training = $training;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }
