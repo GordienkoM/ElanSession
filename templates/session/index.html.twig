@@ -3,37 +3,43 @@
 {% block title %}List des sessions{% endblock %}
 
 {% block body %}
-    <h3>Liste des formations</h3>
-    <table class='uk-table uk-table-hover uk-table-divider'>
-        <thead>
+<h3>Liste des sessions</h3>
+<table class='uk-table uk-table-hover uk-table-divider'>
+    <thead>
+        <tr>
+            <th>Session</th>
+            <th>Nb de stagiaires inscrit</th>
+            <th>Nb de stagiaires minimum</th>
+            <th>Nb de stagiaires maximum</th>
+            <th>Lieu</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {#{ dump()}#}
+        {% for session in sessions %}          
             <tr>
-                <th>Sessions</th>
-                <th>Lieu</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Actions</th>
+                <td>
+                    <a href="{{ path('show_session', {id:session.id} ) }}">
+                        {{ session.title }}
+                    </a>
+                </td>
+                <td>{{ session.trainees|length }}</td>
+                <td>{{ session.minimumTrainees }}</td>
+                <td>{{ session.maximumTrainees }}</td>                  
+                <td>{{ session.location }}</td>
+                <td>{{ session.startDate| date('d/m/Y') }}</td>
+                <td>{{ session.endDate| date('d/m/Y') }}</td>
+                <td>
+                    <!-- https://getuikit.com/docs/icon -->
+                    <a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
+                    <a class="uk-icon-link" uk-icon="trash" href=""></a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-        {#{ dump()}#}
-            {% for session in sessions %}          
-                <tr>
-                    <td>
-                        <a href="{{ path('show_session', {id:session.id} ) }}">
-                            {{ session.title }}
-                        </a>
-                    </td>                  
-                    <td>{{ session.location }}</td>
-                    <td>{{ session.startDate| date('d/m/Y') }}</td>
-                    <td>{{ session.endDate| date('d/m/Y') }}</td>
-                    <td>
-                        <!-- https://getuikit.com/docs/icon -->
-                        <a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
-                        <a class="uk-icon-link" uk-icon="trash" href=""></a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}

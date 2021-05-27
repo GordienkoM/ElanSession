@@ -64,6 +64,11 @@ class Trainee
      */
     private $sessions;
     
+    public function __toString()
+    {
+        return $this->firstName." ".strtoupper($this->lastName);
+    }
+
     public function getFullAdress()
     {
         return $this->adress." ".$this->postalCode." ".$this->city;
