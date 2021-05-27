@@ -26,11 +26,19 @@ main{
 
 }
 
-#home-numbers article{
+#logo{
+    height:60px;
+}
+
+#home-numbers div{
     min-width:240px;
     background-color: rgb(252, 175, 32);
 }
 
+#numbers{
+    font-size: 3em;
+    color:rgb(6, 4, 37)
+}
 
 
 .uk-table, .uk-table td, .uk-table th{
