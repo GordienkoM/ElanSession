@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Session;
 use App\Entity\Trainee;
 use App\Entity\Location;
+use App\Form\TraineeType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,12 +36,30 @@ class MainController extends AbstractController
  /**
      * @Route("/stagiaires", name="stagiaires")
      */
-    public function stagiaires(): Response
+    public function stagiaires(Trainee $trainee = NULL, Request $request): Response
     {
         $stagiaireRepository = $this->getDoctrine()->getRepository(Trainee::class);
     
+        if (!$trainee) {
+            $trainee = new Trainee();
+        }
+
+        $form = $this->createForm(TraineeType::class, $trainee);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $trainee = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($trainee);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('stagiaires');
+        }
+
+
         $stagiaires = $stagiaireRepository->findBy([], ["lastName" => "ASC"]);
         return $this->render('main/stagiaires.html.twig', [
+            'formTrainee' => $form->createView(),
             'stagiaires' => $stagiaires
         ]);
     }

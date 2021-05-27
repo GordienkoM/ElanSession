@@ -43,19 +43,19 @@
     </tbody>
 </table>
 
-<div id="home-numbers" class="uk-flex uk-flex-center" uk-grid>
-    <article class="uk-card  uk-card-default uk-card-body">
-        <h1 class="uk-card-title">{{ nbtrainees }}</h1>
-        Stagiaires                
-    </article>
-    <article class="uk-card uk-card-default uk-card-body">
-        <h1 class="uk-card-title">{{ nblocations }}</h1>
-        Lieux                    
-    </article>
-    <article class="uk-card uk-card-default uk-card-body">
-        <h1 class="uk-card-title">{{ nbsessions }}</h1>
-        Sessions de formation  
-    </article>
+<div id="home-numbers" class="uk-flex uk-flex-center">
+    <div class="uk-card uk-card-default uk-card-body">
+        <p class="numbers">{{ nbtrainees }}</p>
+        <p>Stagiaires</p>                
+    </div>
+    <div class="uk-card uk-card-default uk-card-body uk-margin-left">
+        <p class="numbers">{{ nblocations }}</p>
+        <p>Lieux</p>                    
+    </div>
+    <div class="uk-card uk-card-default uk-card-body uk-margin-left">
+        <p class="numbers">{{ nbsessions }}</p>
+        <p>Sessions de formation</p>  
+    </div>
 </div>
 
 {% endblock %}
