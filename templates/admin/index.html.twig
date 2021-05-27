@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin
+{% endblock %}
+
+{% block body %}
+	{% block navAdmin %}
+		<h1>Administration</h1>
+
+		<div class="uk-width-1-2@s uk-width-2-5@m">
+			<ul class="uk-nav uk-nav-default">
+				<li class="uk-active">
+					<a href="/admin/collaborator">Collaborateurs</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/typeTraining">Categories</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/training">Formations</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/session">Sessions</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/module">Modules</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/location">Lieux</a>
+				</li>
+			</div>
+		</nav>
+	{% endblock %}
+{% endblock %}
