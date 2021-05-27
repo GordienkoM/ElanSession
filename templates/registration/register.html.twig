@@ -1,21 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+	{% for flashError in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+	{% endfor %}
+	{% block navAdmin %}
+		<h1>Administration</h1>
 
-    <h1>Register</h1>
+		<div class="uk-width-1-2@s uk-width-2-5@m">
+			<ul class="uk-nav uk-nav-default">
+				<li class="uk-active">
+					<a href="/admin/register">Collaborateurs</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/typeTraining">Categories</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/training">Formations</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/session">Sessions</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/module">Modules</a>
+				</li>
+				<li class="uk-active">
+					<a href="/admin/location">Lieux</a>
+				</li>
+			</div>
+		</nav>
+	{% endblock %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+	<h1>Ajouter un collaborateur</h1>
+
+	{{ form_start(registrationForm) }}
+	{{ form_row(registrationForm.email) }}
+	{{ form_row(registrationForm.plainPassword, {
+            label: 'mot de passe',
+            class: 'uk-input'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+
+	{{ form_end(registrationForm) }}
 {% endblock %}

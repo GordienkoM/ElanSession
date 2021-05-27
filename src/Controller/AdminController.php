@@ -147,31 +147,31 @@ class AdminController extends AbstractController
             'formTypeTraining' => $form->createView(),
         ]);
     }
-    /**
-     * @Route("/admin/collaborator", name="collaborator_add")
-     */
-    public function addCollaborator(User $collaborator = NULL, Request $request)
-    {
-        if (!$collaborator) {
-            $collaborator = new User();
-        }
+    // /**
+    //  * @Route("/admin/collaborator", name="collaborator_add")
+    //  */
+    // public function addCollaborator(User $collaborator = NULL, Request $request)
+    // {
+    //     if (!$collaborator) {
+    //         $collaborator = new User();
+    //     }
 
-        $form = $this->createForm(RegistrationFormType::class, $collaborator);
-        $form->handleRequest($request);
+    //     $form = $this->createForm(RegistrationFormType::class, $collaborator);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $collaborator = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($collaborator);
-            $entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $collaborator = $form->getData();
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($collaborator);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('collaborator_add');
-        }
+    //         return $this->redirectToRoute('collaborator_add');
+    //     }
 
-        return $this->render('admin/addCollaborator.html.twig', [
-            'formCollaborator' => $form->createView(),
-        ]);
-    }
+    //     return $this->render('admin/addCollaborator.html.twig', [
+    //         'formCollaborator' => $form->createView(),
+    //     ]);
+    // }
 
     /**
      * @Route("/admin", name="admin")
