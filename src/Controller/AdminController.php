@@ -25,8 +25,8 @@ class AdminController extends AbstractController
     public function addTraining(Training $training = NULL, Request $request)
     {
         $trainingRepository = $this->getDoctrine()->getRepository(Training::class);
-
         $trainings = $trainingRepository->findBy([], ["title" => "ASC"]);
+
         if (!$training) {
             $training = new Training();
         }
@@ -45,7 +45,8 @@ class AdminController extends AbstractController
 
         return $this->render('admin/addTraining.html.twig', [
             'formTraining'  => $form->createView(),
-            'trainings'     => $trainings
+            'trainings'     => $trainings,
+
         ]);
     }
 
@@ -83,6 +84,9 @@ class AdminController extends AbstractController
      */
     public function addLocation(Location $location = NULL, Request $request)
     {
+        $locationRepository = $this->getDoctrine()->getRepository(Location::class);
+
+        $locations = $locationRepository->findBy([], ["city" => "ASC"]);
         if (!$location) {
             $location = new Location();
         }
@@ -101,6 +105,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/addLocation.html.twig', [
             'formLocation' => $form->createView(),
+            'locations'    => $locations
         ]);
     }
     /**
@@ -108,6 +113,9 @@ class AdminController extends AbstractController
      */
     public function addModule(Module $module = NULL, Request $request)
     {
+        $moduleRepository = $this->getDoctrine()->getRepository(Module::class);
+
+        $modules = $moduleRepository->findBy([], ["title" => "ASC"]);
         if (!$module) {
             $module = new Module();
         }
@@ -126,6 +134,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/addModule.html.twig', [
             'formModule' => $form->createView(),
+            'modules'    => $modules
         ]);
     }
     /**
@@ -133,6 +142,9 @@ class AdminController extends AbstractController
      */
     public function addTypeTraining(TypeTraining $typeTraining = NULL, Request $request)
     {
+        $typeTrainingRepository = $this->getDoctrine()->getRepository(TypeTraining::class);
+
+        $typeTrainings = $typeTrainingRepository->findBy([], ["title" => "ASC"]);
         if (!$typeTraining) {
             $typeTraining = new TypeTraining();
         }
@@ -151,6 +163,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/addTypeTraining.html.twig', [
             'formTypeTraining' => $form->createView(),
+            'typeTrainings'    => $typeTrainings
         ]);
     }
     /**

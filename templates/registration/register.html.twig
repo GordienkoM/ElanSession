@@ -9,43 +9,60 @@
 	{% endfor %}
 	{% block navAdmin %}
 		<h1>Administration</h1>
+		<div class="uk-flex uk-flex-center">
+			<p class="uk-padding"></p>
+			<p class="uk-padding">
+				<a href="/admin/register">Collaborateurs</a>
+			</p>
+			<p class="uk-padding">
+				<a href="/admin/typeTraining">Categories</a>
+			</p>
+			<p class="uk-padding">
+				<a href="/admin/training">Formations</a>
+			</p>
+			<p class="uk-padding">
+				<a href="/admin/session">Sessions</a>
+			</p>
+			<p class="uk-padding">
+				<a href="/admin/module">Modules</a>
+			</p>
+			<p class="uk-padding">
+				<a href="/admin/location">lieux</a>
+			</p>
+			<p class="uk-padding"></p>
+		</div>
+	</nav>
+{% endblock %}
+<h1>Ajouter un collaborateur</h1>
 
-		<div class="uk-width-1-2@s uk-width-2-5@m">
-			<ul class="uk-nav uk-nav-default">
-				<li class="uk-active">
-					<a href="/admin/register">Collaborateurs</a>
-				</li>
-				<li class="uk-active">
-					<a href="/admin/typeTraining">Categories</a>
-				</li>
-				<li class="uk-active">
-					<a href="/admin/training">Formations</a>
-				</li>
-				<li class="uk-active">
-					<a href="/admin/session">Sessions</a>
-				</li>
-				<li class="uk-active">
-					<a href="/admin/module">Modules</a>
-				</li>
-				<li class="uk-active">
-					<a href="/admin/location">Lieux</a>
-				</li>
-			</div>
-		</nav>
-	{% endblock %}
-
-	<h1>Ajouter un collaborateur</h1>
-
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
+{{ form_start(registrationForm) }}
+{{ form_row(registrationForm.email) }}
+{{ form_row(registrationForm.plainPassword, {
             label: 'mot de passe',
             class: 'uk-input'
         }) }}
 
 
-	{{ form_end(registrationForm) }}
-	{# {% for collaborateur in collaborateurs %}
-			{{ collaborateur.email}}
-		{% endfor %} #}
-{% endblock %}
+{{ form_end(registrationForm) }}
+
+<h3>Liste des collaborateurs</h3>
+<table class='uk-table uk-table-hover uk-table-divider'>
+	<thead>
+		<tr>
+			<th>Email</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for collaborateur in collaborateurs %}
+			<tr>
+				<td>{{ collaborateur.email }}</td>
+				<td>
+					<!-- https://getuikit.com/docs/icon -->
+					<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
+					<a class="uk-icon-link" uk-icon="trash" href=""></a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>{% endblock %}

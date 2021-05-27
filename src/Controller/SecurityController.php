@@ -43,6 +43,9 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        $collaborateurRepository = $this->getDoctrine()->getRepository(User::class);
+
+        $collaborateurs = $collaborateurRepository->findBy([], ["email" => "ASC"]);
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -61,11 +64,12 @@ class SecurityController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('admin'); //TODO
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'collaborateurs'   => $collaborateurs
         ]);
     }
 }

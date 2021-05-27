@@ -7,29 +7,30 @@
 	{% block navAdmin %}
 		<h1>Administration</h1>
 
-		<div class="uk-width-1-2@s uk-width-2-5@m">
-			<ul class="uk-nav uk-nav-default">
-				<li class="uk-active">
-					<a href="register">Collaborateurs</a>
-				</li>
-				<li class="uk-active">
-					<a href="typeTraining">Catégories</a>
-				</li>
-				<li class="uk-active">
-					<a href="training">Formations</a>
-				</li>
-				<li class="uk-active">
-					<a href="session">Sessions</a>
-				</li>
-				<li class="uk-active">
-					<a href="module">Modules</a>
-				</li>
-				<li class="uk-active">
-					<a href="location">Lieux</a>
-				</li>
-			</div>
-		</nav>
-	{% endblock %}
 
-	<h1>Ajouter un module</h1>
-	{{ form(formModule) }}{% endblock %}
+		<div class="uk-flex uk-flex-center">
+			<p class="uk-padding"></p>
+			<p class="uk-padding">
+				<a href="register">Collaborateurs</a>
+			</p>
+			<p class="uk-padding">
+				<a href="typeTraining">Categories</a>
+			</p>
+			<p class="uk-padding">
+				<a href="training">Formations</a>
+			</p>
+			<p class="uk-padding">
+				<a href="session">Sessions</a>
+			</p>
+			<p class="uk-padding">
+				<a href="module">Modules</a>
+			</p>
+			<p class="uk-padding">
+				<a href="location">lieux</a>
+			</p>
+			<p class="uk-padding"></p>
+		</div>
+	</nav>
+{% endblock %}
+<h1>Ajouter un module</h1>
+{{ form(formModule) }}{% endblock %}

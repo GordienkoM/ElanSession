@@ -7,53 +7,56 @@
 	{% block navAdmin %}
 		<h1>Administration</h1>
 
-		<div class="uk-width-1-2@s uk-width-2-5@m">
-			<ul class="uk-nav uk-nav-default">
-				<li class="uk-active">
-					<a href="register">Collaborateurs</a>
-				</li>
-				<li class="uk-active">
-					<a href="typeTraining">Catégories</a>
-				</li>
-				<li class="uk-active">
-					<a href="training">Formations</a>
-				</li>
-				<li class="uk-active">
-					<a href="session">Sessions</a>
-				</li>
-				<li class="uk-active">
-					<a href="module">Modules</a>
-				</li>
-				<li class="uk-active">
-					<a href="location">Lieux</a>
-				</li>
-			</div>
-		</nav>
-	{% endblock %}
 
-	<h1>Ajouter une formation</h1>
-	{{ form(formTraining) }}
-		<h3>Liste des sessions</h3>
-		<table class='uk-table uk-table-hover uk-table-divider'>
-			<thead>
+		<div class="uk-flex uk-flex-center">
+			<p class="uk-padding"></p>
+			<p class="uk-padding">
+				<a href="register">Collaborateurs</a>
+			</p>
+			<p class="uk-padding">
+				<a href="typeTraining">Categories</a>
+			</p>
+			<p class="uk-padding">
+				<a href="training">Formations</a>
+			</p>
+			<p class="uk-padding">
+				<a href="session">Sessions</a>
+			</p>
+			<p class="uk-padding">
+				<a href="module">Modules</a>
+			</p>
+			<p class="uk-padding">
+				<a href="location">lieux</a>
+			</p>
+			<p class="uk-padding"></p>
+		</div>
+	</nav>
+{% endblock %}
+
+<h1>Ajouter une formation</h1>
+{{ form(formTraining) }}
+	<h3>Liste des sessions</h3>
+	<table class='uk-table uk-table-hover uk-table-divider'>
+		<thead>
+			<tr>
+				<th>Formation</th>
+				<th>Catégorie</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for training in trainings %}
 				<tr>
-					<th>Formation</th>
-					<th>Modules</th>
-					<th>Action</th>
+					<td>{{ training.title }}</td>
+					<td>{{ training.typeTraining.title }}</td>
+					<td>
+						<!-- https://getuikit.com/docs/icon -->
+						<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
+						<a class="uk-icon-link" uk-icon="trash" href=""></a>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				{% for training in trainings %}
-					<tr>
-						<td>{{ training.title }}</td>
-						<td>{{ training.modules }}</td>
-						<td>
-							<!-- https://getuikit.com/docs/icon -->
-							<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
-							<a class="uk-icon-link" uk-icon="trash" href=""></a>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% endblock %}
+
+			{% endfor %}
+		</tbody>
+	</tbody>
+</table>{% endblock %}
