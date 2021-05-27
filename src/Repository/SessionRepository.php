@@ -19,22 +19,23 @@ class SessionRepository extends ServiceEntityRepository
         parent::__construct($registry, Session::class);
     }
 
-    // /**
-    //  * @return Session[] Returns an array of Session objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Session[] Returns an array of Session objects
+      */
+    
+    public function findNextThree()
     {
+        $now = new \DateTime();
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('s.startDate > :now')
+            ->setParameter('now', $now->format('Y-m-d'))
+            ->orderBy('s.startDate', 'ASC')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Session

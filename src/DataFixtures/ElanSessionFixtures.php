@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\User;
 use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Trainee;
@@ -14,22 +15,23 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 class ElanSessionFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
-    {
-
+    {       
+        
         $module1 = new Module();
         $module1->setTitle("Back end");
         $manager->persist($module1);
         $module2 = new Module();
         $module2->setTitle("Front end");
         $manager->persist($module2);
-
-        $formation1 = new Training;
-        $formation1->setTitle('Developpeur WEB & WEB mobile');
-        $manager->persist($formation1);
-        $formation2 = new Training;
-        $formation2->setTitle('Assistante de direction');
-        $manager->persist($formation2);
-
+        $module3 = new Module();
+        $module3->setTitle("Word");
+        $manager->persist($module3);
+        $module4 = new Module();
+        $module4->setTitle("Exel");
+        $manager->persist($module4);
+        $module5 = new Module();
+        $module5->setTitle("Préparation de café");
+        $manager->persist($module5);
 
         $typeDeFormation1 = new TypeTraining();
         $typeDeFormation1->setTitle("Développement")->setColor("blue");
@@ -50,7 +52,15 @@ class ElanSessionFixtures extends Fixture
         $typeDeFormation6->setTitle("Infographie")->setColor("purple");
         $manager->persist($typeDeFormation6);
 
-
+        $formation1 = new Training;
+        $formation1->setTitle('Developpeur WEB & WEB mobile')->addModule($module1)->addModule($module2)->setTypeTraining($typeDeFormation1);
+        $manager->persist($formation1);
+        $formation2 = new Training;
+        $formation2->setTitle('Assistante de direction')->addModule($module3)->addModule($module4)->addModule($module5)->setTypeTraining($typeDeFormation2);
+        $manager->persist($formation2);
+        $formation3 = new Training;
+        $formation3->setTitle('Connaissances bureautique')->addModule($module3)->addModule($module4)->setTypeTraining($typeDeFormation2);
+        $manager->persist($formation3);
 
         $lieu1 = new Location();
         $lieu1->setAdress("202 Avenue de Colmar")->setPostalCode("67100")->setCity("Strasbourg");
@@ -89,14 +99,30 @@ class ElanSessionFixtures extends Fixture
         $stagiaire7 = new Trainee();
         $stagiaire7->setFirstName("Edith")->setLastName("Orial")->setEmail("orial@gmail.com")->setAdress("104 Route Gutenberg")->setPostalCode("67000")->setCity("Strasbourg")->setPhone("0653876244")->setNumberPoleEmploi("4587905O");
         $manager->persist($stagiaire7);
+        $stagiaire8 = new Trainee();
+        $stagiaire8->setFirstName("Edith")->setLastName("Gold")->setEmail("gold@gmail.com")->setAdress("5 Rue de l'or")->setPostalCode("67000")->setCity("Strasbourg")->setPhone("0655667744")->setNumberPoleEmploi("");
+        $manager->persist($stagiaire8);
 
         $session1 = new Session();
-        $session1->setTitle('DL11')->setMinimumTrainees(5)->setMaximumTrainees(12)->setStartDate(new \DateTime('2021-06-04'))->setEndDate(new \DateTime('2021-12-04'))->setTraining($formation1)->setLocation($lieu1);
+        $session1->setTitle('DL10')->setMinimumTrainees(6)->setMaximumTrainees(12)->setStartDate(new \DateTime('2021-02-10'))->setEndDate(new \DateTime('2021-09-04'))
+        ->setTraining($formation1)->setLocation($lieu1)->addTrainee($stagiaire1)->addTrainee($stagiaire2)->setTraining($formation1);
         $manager->persist($session1);
         $session2 = new Session();
-        $session2->setTitle('AD14')->setMinimumTrainees(5)->setMaximumTrainees(12)->setStartDate(new \DateTime('2021-06-09'))->setEndDate(new \DateTime('2021-12-09'))->setTraining($formation2)->setLocation($lieu3);
+        $session2->setTitle('DL11')->setMinimumTrainees(6)->setMaximumTrainees(12)->setStartDate(new \DateTime('2021-06-04'))->setEndDate(new \DateTime('2021-12-04'))
+        ->setTraining($formation1)->setLocation($lieu1)->addTrainee($stagiaire3)->addTrainee($stagiaire4)->addTrainee($stagiaire5)->addTrainee($stagiaire6)->setTraining($formation1);
         $manager->persist($session2);
-
+        $session3 = new Session();
+        $session3->setTitle('AD14')->setMinimumTrainees(5)->setMaximumTrainees(10)->setStartDate(new \DateTime('2021-06-09'))->setEndDate(new \DateTime('2021-12-09'))
+        ->setTraining($formation2)->setLocation($lieu3)->addTrainee($stagiaire7)->addTrainee($stagiaire8)->setTraining($formation2);
+        $manager->persist($session3);
+        $session4 = new Session();
+        $session4->setTitle('AD15')->setMinimumTrainees(5)->setMaximumTrainees(10)->setStartDate(new \DateTime('2021-08-09'))->setEndDate(new \DateTime('2022-01-19'))
+        ->setTraining($formation2)->setLocation($lieu3)->addTrainee($stagiaire2)->setTraining($formation2);
+        $manager->persist($session4);
+        $session5 = new Session();
+        $session5->setTitle('CB1')->setMinimumTrainees(5)->setMaximumTrainees(10)->setStartDate(new \DateTime('2021-10-09'))->setEndDate(new \DateTime('2022-01-05'))
+        ->setTraining($formation2)->setLocation($lieu1)->setTraining($formation3);
+        $manager->persist($session5);
 
         $manager->flush();
     }

@@ -2,8 +2,8 @@
     box-sizing: border-box;
 }
 
-h1 {
-    color:brown;
+h1, h3 {
+    color:rgb(1, 82, 102);
     padding:1em;
 }
 body{
@@ -26,7 +26,10 @@ main{
 
 }
 
-
+#home-numbers article{
+    min-width:240px;
+    background-color: rgb(252, 175, 32);
+}
 
 
 
