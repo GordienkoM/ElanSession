@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Location;
@@ -13,7 +12,6 @@ use App\Form\LocationType;
 use App\Form\TrainingType;
 use App\Entity\TypeTraining;
 use App\Form\TypeTrainingType;
-use App\Form\RegistrationFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,6 +24,9 @@ class AdminController extends AbstractController
      */
     public function addTraining(Training $training = NULL, Request $request)
     {
+        $trainingRepository = $this->getDoctrine()->getRepository(Training::class);
+
+        $trainings = $trainingRepository->findBy([], ["title" => "ASC"]);
         if (!$training) {
             $training = new Training();
         }
@@ -43,7 +44,8 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/addTraining.html.twig', [
-            'formTraining' => $form->createView(),
+            'formTraining'  => $form->createView(),
+            'trainings'     => $trainings
         ]);
     }
 
@@ -52,6 +54,9 @@ class AdminController extends AbstractController
      */
     public function addSession(Session $session = NULL, Request $request)
     {
+        $sessionRepository = $this->getDoctrine()->getRepository(Session::class);
+
+        $sessions = $sessionRepository->findBy([], ["startDate" => "ASC"]);
         if (!$session) {
             $session = new Session();
         }
@@ -70,6 +75,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/addSession.html.twig', [
             'formSession' => $form->createView(),
+            'sessions' => $sessions
         ]);
     }
     /**
@@ -147,9 +153,9 @@ class AdminController extends AbstractController
             'formTypeTraining' => $form->createView(),
         ]);
     }
-    // /**
-    //  * @Route("/admin/collaborator", name="collaborator_add")
-    //  */
+    /**
+     * @Route("/admin/collaborator", name="collaborator_add")
+     */
     // public function addCollaborator(User $collaborator = NULL, Request $request)
     // {
     //     if (!$collaborator) {
@@ -180,6 +186,18 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+        ]);
+    }
+    /**
+     * @Route("/register", name="register")
+     */
+    public function Collaborateurs(): Response
+    {
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+
+        $collaborateurs = $userRepository->findBy([], ["email" => "ASC"]);
+        return $this->render('registration/register.html.twig', [
+            'collaborateurs' => $collaborateurs
         ]);
     }
 }

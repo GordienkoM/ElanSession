@@ -32,4 +32,39 @@
 	{% endblock %}
 
 	<h1>Ajouter une session</h1>
-	{{ form(formSession) }}{% endblock %}
+	{{ form(formSession) }}
+
+		<h3>Liste des sessions</h3>
+		<table class='uk-table uk-table-hover uk-table-divider'>
+			<thead>
+				<tr>
+					<th>Session</th>
+					<th>Lieu</th>
+					<th>Date début</th>
+					<th>Date fin</th>
+					<th>Nb Stagiaire</th>
+					<th>MIN Stagiaire</th>
+					<th>MAX Stagiaire</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for session in sessions %}
+					<tr>
+						<td>{{ session.title }}</td>
+						<td>{{ session.location.adress }}</td>
+						<td>{{ session.startDate | date('d/m/Y') }}</td>
+						<td>{{ session.endDate | date('d/m/Y')}}</td>
+						<td>{{ session.trainees|length }}</td>
+						<td>{{ session.minimumTrainees }}</td>
+						<td>{{ session.maximumTrainees }}</td>
+						<td>
+							<!-- https://getuikit.com/docs/icon -->
+							<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
+							<a class="uk-icon-link" uk-icon="trash" href=""></a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endblock %}
