@@ -30,4 +30,18 @@ class MainController extends AbstractController
             'nblocations' => $nblocations
         ]);
     }
+
+ /**
+     * @Route("/stagiaires", name="stagiaires")
+     */
+    public function stagiaires(): Response
+    {
+        $stagiaireRepository = $this->getDoctrine()->getRepository(Trainee::class);
+    
+        $stagiaires = $stagiaireRepository->findBy([], ["lastName" => "ASC"]);
+        return $this->render('main/stagiaires.html.twig', [
+            'stagiaires' => $stagiaires
+        ]);
+    }
+    
 }
