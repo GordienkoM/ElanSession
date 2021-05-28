@@ -3,7 +3,7 @@
 }
 
 h1, h3 {
-    color:rgb(42, 59, 207);
+    color:rgb(51, 112, 211);
     padding:1em;
 }
 body{
@@ -17,8 +17,12 @@ main{
     background-color:rgb(222, 221, 247);
 }
 
+#espace{
+    height:300px;
+}
+
 #navbar{
-    background-color:rgb(42, 59, 207);;
+    background-color:rgb(51, 112, 211);
 }
 
 #navbar a{
@@ -26,7 +30,7 @@ main{
 
 }
 .uk-navbar-dropdown{
-    background-color: rgb(42, 59, 207);
+    background-color: rgb(51, 112, 211);
  }
 #logo{
     height:60px;
@@ -44,7 +48,7 @@ main{
 
 .under-number{
     font-size: 1.5em;
-    color:rgb(42, 59, 207);
+    color:rgb(51, 112, 211);
 }
 
 

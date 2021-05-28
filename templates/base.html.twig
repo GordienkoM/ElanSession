@@ -72,11 +72,16 @@
 				</ul>
 			</div>
 		</nav>
-		<main class="uk-container"> {% block body %}{% endblock %}
-			</body>
-		</body>
-	</html>
-</main></body><footer class="uk-align-center">
-<p>© 2021 Elan</p>
-<p></p>
-<p></p></footer></html>
+		<main class="uk-container">
+			{% block body %}	
+
+			{% endblock %}
+			{% block footer %}	
+				<footer class="uk-text-center uk-align-center">
+					<p>© 2021 Elan</p>
+				</footer>
+			{% endblock %}
+		</main>
+
+	</body>
+</html>
