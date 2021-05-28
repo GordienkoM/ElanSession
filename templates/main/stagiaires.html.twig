@@ -7,8 +7,8 @@
 
 {% block body %}
 
-	<h1>Ajouter un stagiaire</h1>
-	{{ form(formTrainee) }}
+<h1>Ajouter un stagiaire</h1>
+{{ form(formTrainee) }}
 
 	<h1>Liste des stagiaires</h1>
 	<table class='uk-table uk-table-hover uk-table-divider'>
@@ -35,7 +35,9 @@
 					<td>
 						<!-- https://getuikit.com/docs/icon -->
 						<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
-						<a class="uk-icon-link" uk-icon="trash" href=""></a>
+						{% if is_granted('ROLE_ADMIN') %}
+							<a class="uk-icon-link" uk-icon="trash" href=""></a>
+						{% endif %}
 					</td>
 				</tr>
 			{% endfor %}

@@ -41,5 +41,5 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
 
         # IS_AUTHENTICATED_ANONYMOUSLY c'est l'utilisateur qui n'est pas authentifié, il a acces à la route /login
-        # - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } TODO
-        # - { path: ^/, roles: ROLE_USER } TODO
+         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } TODO
+         - { path: ^/, roles: ROLE_USER } TODO

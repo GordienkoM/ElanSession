@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session {{ session.title }}
+{% endblock %}
+
+{% block body %}
+<h1>{{ session.title }}</h1>
+<table class='uk-table uk-table-hover uk-table-divider'>
+		<tr>
+			<th>Titre</th>
+			<td>{{ session.title }}</td>
+		</tr>
+		<tr>
+			<th>Formation</th>
+			<td>
+				{{ session.training.title }}
+				<ul>
+				{% for module in session.training.modules  %}          
+					<li> {{ module.title }} </li>
+				{% endfor %}
+				</ul>				
+			</td>				
+		</tr>
+		<tr>
+			<th>Date de début</th>
+			<td>{{ session.startDate| date('d/m/Y') }}</td>
+		</tr>
+		<tr>
+			<th>Date de fin</th>
+			<td>{{ session.endDate| date('d/m/Y') }}</td>
+		</tr>
+		<tr>
+			<th>Nb de stagiaires inscrit</th>
+			<td>{{ session.trainees|length }}</td>
+		</tr>
+		<tr>
+			<th>Nb de stagiaires minimum</th>
+			<td>{{ session.minimumTrainees  }}</td>
+		</tr>
+		<tr>
+			<th>Nb de stagiaires maximum</th>
+			<td>{{ session.maximumTrainees }}</td>
+		</tr>		
+		<tr>
+			<th>List de stagiairs</th>
+			<td>
+				{{ session.training.title }}
+				<ul>
+				{% for stagiaire in session.trainees %}          
+					<li> 
+						<a href="{{ path('show_stagiaire', {id:stagiaire.id} ) }}">
+							{{ stagiaire }}
+						</a> 
+					</li>
+				{% endfor %}
+				</ul>				
+			</td>				
+		</tr>
+
+
+		<tr>
+			<th>Lieu</th>
+			<td>{{ session.location }}</td>
+		</tr>			
+		<tr>
+			<th>Action</th>
+			<td>
+				<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
+				{% if is_granted('ROLE_ADMIN') %}
+					<a class="uk-icon-link" uk-icon="trash" href=""></a>
+				{% endif %}
+			</td>
+		</tr>
+</table>
+	
+<h1>Ajouter un session</h1>
+{#{ form(formSession) }#}
+{% endblock %}

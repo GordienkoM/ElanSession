@@ -18,26 +18,29 @@
 			<th>Téléphone</th>
 			<td>{{ stagiaire.phone }}</td>
 		</tr>
-		</tr>
+		<tr>
 			<th>Nb Pole Emploi</th>
 			<td>{{ stagiaire.numberPoleEmploi }}</td>
-		<tr>
 		</tr>
+		<tr>
 			<th>Session(s)</th>
 			<td>
-			{% for session in stagiaire.sessions %}          
-				<p> {{ session.title ~ ", " ~ session.training.title ~ " (" ~ session.startDate| date('d/m/Y') ~ " - " ~ session.endDate| date('d/m/Y') ~")" }}</p>
-			{% endfor %}				
+				{% for session in stagiaire.sessions %}          
+					<p> {{ session.title ~ ", " ~ session.training.title ~ " (" ~ session.startDate| date('d/m/Y') ~ " - " ~ session.endDate| date('d/m/Y') ~")" }}</p>
+				{% endfor %}				
 			</td>				
+		</tr>
 		<tr>
 			<th>Action</th>
 			<td>
 				<!-- https://getuikit.com/docs/icon -->
 				<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
-				<a class="uk-icon-link" uk-icon="trash" href=""></a>
+				{% if is_granted('ROLE_ADMIN') %}
+					<a class="uk-icon-link" uk-icon="trash" href=""></a>
+				{% endif %}
 			</td>
 		</tr>
 </table>
-	<h1>Ajouter un stagiaire</h1>
-	{{ form(formTrainee) }}
+<h1>Ajouter un stagiaire</h1>
+{{ form(formTrainee) }}
 {% endblock %}
