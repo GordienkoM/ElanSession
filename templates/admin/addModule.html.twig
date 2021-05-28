@@ -5,4 +5,28 @@
 
 {% block body %}
 	<h1>Ajouter un module</h1>
-	{{ form(formModule) }}{% endblock %}
+	{{ form(formModule) }}
+
+		<h1>Liste des modules</h1>
+		<table class='uk-table uk-table-hover uk-table-divider'>
+			<thead>
+				<tr>
+					<th>module</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for module in modules  %}
+					<tr>
+						<td>
+							{{ module.title }}
+						</td>
+						<td>
+							<!-- https://getuikit.com/docs/icon -->
+							<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="{{ path('module_edit', {id:module.id} ) }}"></a>
+							<a class="uk-icon-link" uk-icon="trash" href="{{ path('module_suppr', {id:module.id}) }}"></a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		{% endblock %}
