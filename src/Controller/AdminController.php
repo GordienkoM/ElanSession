@@ -80,8 +80,11 @@ class AdminController extends AbstractController
         ]);
     }
     /**
+     * @Route("/admin/location/{id}/edit", name="location_edit")
      * @Route("/admin/location", name="location_add")
      */
+
+    
     public function addLocation(Location $location = NULL, Request $request)
     {
         $locationRepository = $this->getDoctrine()->getRepository(Location::class);

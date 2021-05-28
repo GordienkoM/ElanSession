@@ -20,6 +20,12 @@ class TraineeSassionType extends AbstractType
                 'label_format' => 'Ajoute le stagiaire à une session',
                 'class'         => Session::class,
                 'choice_label'  => 'title',
+                //multiple permet afficher plusieur session
+                'multiple' => true,
+                //permet d'etaler l'affichage case à cocher
+                'expanded' => true,
+                //permet de faire une mise à jour systèmatique entre le stagiaire et la session
+                'by_reference' => false,
                 'attr'          => ['class' => 'uk-input']
             ])
             ->add('valider', SubmitType::class, [

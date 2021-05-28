@@ -71,20 +71,18 @@ class MainController extends AbstractController
     public function showTrainee(Trainee $trainee= null, Request $request): Response
     {
 
-        // $form = $this->createForm(TraineeSassionType::class, $trainee);
-        // $form->handleRequest($request);
+        $form = $this->createForm(TraineeSassionType::class, $trainee);
+        $form->handleRequest($request);
 
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $trainee = $form->getData();
-        //     $entityManager = $this->getDoctrine()->getManager();
-        //     $entityManager->persist($trainee);
-        //     $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
 
-        //     return $this->redirectToRoute('showTrainee');
-        // }
+            return $this->redirectToRoute('show_stagiaire',["id"=>$trainee->getId()]);
+        }
 
         return $this->render('main/showStagiaire.html.twig', [
-           // 'formTrainee' => $form->createView(),
+            'formTrainee' => $form->createView(),
             'stagiaire' => $trainee,
         ]);
     }
