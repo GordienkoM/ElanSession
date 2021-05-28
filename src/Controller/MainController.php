@@ -6,6 +6,7 @@ use App\Entity\Session;
 use App\Entity\Trainee;
 use App\Entity\Location;
 use App\Form\TraineeType;
+use App\Form\TraineeSassionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,7 +34,7 @@ class MainController extends AbstractController
         ]);
     }
 
- /**
+    /**
      * @Route("/stagiaires", name="stagiaires")
      */
     public function stagiaires(Trainee $trainee = NULL, Request $request): Response
@@ -64,4 +65,28 @@ class MainController extends AbstractController
         ]);
     }
     
+    /**
+     * @Route("/showStagiaire/{id}", name="show_stagiaire")
+     */
+    public function showTrainee(Trainee $trainee= null, Request $request): Response
+    {
+
+        // $form = $this->createForm(TraineeSassionType::class, $trainee);
+        // $form->handleRequest($request);
+
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $trainee = $form->getData();
+        //     $entityManager = $this->getDoctrine()->getManager();
+        //     $entityManager->persist($trainee);
+        //     $entityManager->flush();
+
+        //     return $this->redirectToRoute('showTrainee');
+        // }
+
+        return $this->render('main/showStagiaire.html.twig', [
+           // 'formTrainee' => $form->createView(),
+            'stagiaire' => $trainee,
+        ]);
+    }
 }
+

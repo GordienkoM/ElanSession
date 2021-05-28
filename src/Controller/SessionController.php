@@ -17,7 +17,7 @@ class SessionController extends AbstractController
     {
         $sessions = $this->getDoctrine()
             ->getRepository(Session::class)
-            ->findBy([], ["title" => "DESC"]);
+            ->findBy([], ["startDate" => "ASC"]);
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
         ]);

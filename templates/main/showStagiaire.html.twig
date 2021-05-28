@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ stagiaire }}
+{% endblock %}
+
+{% block body %}
+<h1>{{ stagiaire }}</h1>
+<table class='uk-table uk-table-hover uk-table-divider'>
+		<tr>
+			<th>Prénom NOM</th>
+			<td>{{ stagiaire }}</td>
+		</tr>
+		<tr>
+			<th>Adress</th>
+			<td>{{ stagiaire.fullAdress }}</td>
+		</tr>
+		<tr>
+			<th>Téléphone</th>
+			<td>{{ stagiaire.phone }}</td>
+		</tr>
+		</tr>
+			<th>Nb Pole Emploi</th>
+			<td>{{ stagiaire.numberPoleEmploi }}</td>
+		<tr>
+		</tr>
+			<th>Session(s)</th>
+			<td>
+			{% for session in stagiaire.sessions %}          
+				<p> {{ session.title ~ ", " ~ session.training.title ~ " (" ~ session.startDate| date('d/m/Y') ~ " - " ~ session.endDate| date('d/m/Y') ~")" }}</p>
+			{% endfor %}				
+			</td>				
+		<tr>
+			<th>Action</th>
+			<td>
+				<!-- https://getuikit.com/docs/icon -->
+				<a class="uk-icon-link uk-margin-small-right" uk-icon="file-edit" href="#"></a>
+				<a class="uk-icon-link" uk-icon="trash" href=""></a>
+			</td>
+		</tr>
+</table>
+	<h1>Ajouter un stagiaire</h1>
+	{#{ form(formTrainee) }#}
+{% endblock %}
