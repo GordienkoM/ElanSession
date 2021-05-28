@@ -154,6 +154,17 @@ class AdminController extends AbstractController
         ]);
     }
     /**
+     * @Route("/admin/module/{id}/suppr",name="module_suppr")  
+     */
+    public function supprimerModule(Module $module = NULL)
+    {
+        $suppr = $this->getDoctrine()->getManager();
+        $suppr->remove($module);
+        $suppr->flush();
+
+        return $this->redirectToRoute('module_add');
+    }
+    /**
      * @Route("/admin/typeTraining/{id}/edit", name="typeTraining_edit")
      * @Route("/admin/typeTraining", name="typeTraining_add")
      */
