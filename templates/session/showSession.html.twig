@@ -22,24 +22,16 @@
 			</td>				
 		</tr>
 		<tr>
-			<th>Date de début</th>
-			<td>{{ session.startDate| date('d/m/Y') }}</td>
-		</tr>
-		<tr>
-			<th>Date de fin</th>
-			<td>{{ session.endDate| date('d/m/Y') }}</td>
+			<th>Période</th>
+			<td>{{ session.startDate| date('d/m/Y') ~" - "~session.endDate| date('d/m/Y')}}</td>
 		</tr>
 		<tr>
 			<th>Nb de stagiaires inscrit</th>
-			<td>{{ session.trainees|length }}</td>
+			<td>{{ session.trainees|length ~"/"~ session.maximumTrainees  }}</td>
 		</tr>
 		<tr>
-			<th>Nb de stagiaires minimum</th>
-			<td>{{ session.minimumTrainees  }}</td>
-		</tr>
-		<tr>
-			<th>Nb de stagiaires maximum</th>
-			<td>{{ session.maximumTrainees }}</td>
+			<th>Nb de stagiaires autorisés</th>
+			<td>{{ session.minimumTrainees ~" à "~ session.maximumTrainees}}</td>
 		</tr>		
 		<tr>
 			<th>Liste des stagiaires</th>
