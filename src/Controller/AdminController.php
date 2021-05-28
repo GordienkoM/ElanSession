@@ -20,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminController extends AbstractController
 {
     /**
+     * Route("/admin/training/{id}/edit", name="training_edit")
      * @Route("/admin/training", name="training_add")
      */
     public function addTraining(Training $training = NULL, Request $request)
@@ -49,8 +50,20 @@ class AdminController extends AbstractController
 
         ]);
     }
+    /**
+     * @Route("/admin/training/{id}/suppr",name="training_suppr")  
+     */
+    public function supprimerTraining(Training $training = NULL)
+    {
+        $suppr = $this->getDoctrine()->getManager();
+        $suppr->remove($training);
+        $suppr->flush();
+
+        return $this->redirectToRoute('training_add');
+    }
 
     /**
+     * @Route("/admin/session/{id}/edit", name="session_edit")
      * @Route("/admin/session", name="session_add")
      */
     public function addSession(Session $session = NULL, Request $request)
@@ -84,7 +97,6 @@ class AdminController extends AbstractController
      * @Route("/admin/location", name="location_add")
      */
 
-    
     public function addLocation(Location $location = NULL, Request $request)
     {
         $locationRepository = $this->getDoctrine()->getRepository(Location::class);
@@ -112,6 +124,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
+     * @Route("/admin/module/{id}/edit", name="module_edit")
      * @Route("/admin/module", name="module_add")
      */
     public function addModule(Module $module = NULL, Request $request)
@@ -141,6 +154,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
+     * @Route("/admin/typeTraining/{id}/edit", name="typeTraining_edit")
      * @Route("/admin/typeTraining", name="typeTraining_add")
      */
     public function addTypeTraining(TypeTraining $typeTraining = NULL, Request $request)
@@ -170,30 +184,39 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/admin/collaborator", name="collaborator_add")
+     * @Route("/admin/typeTraining/{id}/suppr",name="typeTraining_suppr")  
      */
-    // public function addCollaborator(User $collaborator = NULL, Request $request)
-    // {
-    //     if (!$collaborator) {
-    //         $collaborator = new User();
-    //     }
+    public function supprimerTypeTraining(typeTraining $typeTraining = NULL)
+    {
+        $suppr = $this->getDoctrine()->getManager();
+        $suppr->remove($typeTraining);
+        $suppr->flush();
 
-    //     $form = $this->createForm(RegistrationFormType::class, $collaborator);
-    //     $form->handleRequest($request);
+        return $this->redirectToRoute('typeTraining_add');
+    }
+    /**
+     * @Route("/admin/location/{id}/suppr",name="location_suppr")  
+     */
+    public function supprimerLocation(Location $location = NULL)
+    {
+        $suppr = $this->getDoctrine()->getManager();
+        $suppr->remove($location);
+        $suppr->flush();
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $collaborator = $form->getData();
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->persist($collaborator);
-    //         $entityManager->flush();
+        return $this->redirectToRoute('location_add');
+    }
+    /**
+     * @Route("/admin/session/{id}/suppr",name="session_suppr")  
+     */
+    public function supprimerSession(Session $session = NULL)
+    {
+        $suppr = $this->getDoctrine()->getManager();
+        $suppr->remove($session);
+        $suppr->flush();
 
-    //         return $this->redirectToRoute('collaborator_add');
-    //     }
+        return $this->redirectToRoute('session_add');
+    }
 
-    //     return $this->render('admin/addCollaborator.html.twig', [
-    //         'formCollaborator' => $form->createView(),
-    //     ]);
-    // }
 
     /**
      * @Route("/admin", name="admin")

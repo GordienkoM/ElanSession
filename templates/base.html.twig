@@ -7,7 +7,7 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-				           and uncomment the following Encore helpers to start using Symfony UX #}
+												and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			<!-- UIkit CSS -->
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/css/uikit.min.css"/>
@@ -23,7 +23,8 @@
 	<body>
 		<nav id="navbar" class="uk-navbar-container" uk-navbar>
 
-			<a class="uk-navbar-item uk-logo" href="{{ path('accueil') }}"> <img id="logo" src="img/logoelan.png" alt="logotype"></a>
+			<a class="uk-navbar-item uk-logo" href="{{ path('accueil') }}">
+				<img id="logo" src="{{ asset('img/logoelan.png') }}" alt="logo"></a>
 			<div class="uk-navbar-right">
 				<ul class="uk-navbar-nav">
 					<li class="uk-navbar-item">
@@ -35,8 +36,30 @@
 					<li class="uk-navbar-item">
 						<a href="{{ path('stagiaires') }}">Stagiaires</a>
 					</li>
-					<li class="uk-navbar-item">
+					<li>
 						<a href="{{ path('admin') }}">Admin</a>
+						<div class="uk-navbar-dropdown">
+							<ul class="uk-nav uk-navbar-dropdown-nav">
+								<li>
+									<a href="/admin/register">Collaborateurs</a>
+								</li>
+								<li>
+									<a href="/admin/typeTraining">Categories</a>
+								</li>
+								<li>
+									<a href="/admin/training">Formations</a>
+								</li>
+								<li>
+									<a href="/admin/session">Sessions</a>
+								</li>
+								<li>
+									<a href="/admin/module">Modules</a>
+								</li>
+								<li>
+									<a href="/admin/location">Lieux</a>
+								</li>
+							</ul>
+						</div>
 					</li>
 					<li class="uk-navbar-item">
 						<a href="{{ path('app_logout') }}">Deconnexion</a>
@@ -45,6 +68,7 @@
 			</div>
 		</nav>
 		<main class="uk-container"> {% block body %}{% endblock %}
-			</main>
+			</body>
 		</body>
 	</html>
+</main></body></html>

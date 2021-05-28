@@ -24,7 +24,9 @@ class TrainingType extends AbstractType
                 'class'         => Module::class,
                 'choice_label'  => 'title',
                 'attr'          => ['class' => 'uk-input'],
+                //permet d'afficher plusieurs sessions dans un champ
                 'multiple'      => true,
+                //permet d'étaler l'affichage en cases à cocher.
                 'expanded'      => true
             ])
             ->add('typeTraining', EntityType::class, [
